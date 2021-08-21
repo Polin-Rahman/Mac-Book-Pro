@@ -76,8 +76,23 @@ function totalUpdatePrice() {
     const totalUpdatePrice = 1299 + extraMemortCost + extraStorageCost + deliveryCharge;
 
     document.getElementById('total-price').innerText = totalUpdatePrice;
+    document.getElementById('promo-total').innerText = totalUpdatePrice;
+
+    return totalUpdatePrice;
 }
 
+/* apply promo code */
+
+document.getElementById('apply-btn').addEventListener('click', function () {
+    const getPromoCodeInput = document.getElementById('promo-code');
+    const getPromoCode = getPromoCodeInput.value;
+    if (getPromoCode == 'stevekaku') {
+        const promoTotal = totalUpdatePrice();
+        const promoTotalFinal = promoTotal - (promoTotal * 20 / 100);
+        document.getElementById('promo-total').innerText = promoTotalFinal;
+    }
+    getPromoCodeInput.value = '';
+});
 
 
 
